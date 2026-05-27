@@ -4,74 +4,74 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
-    git
-    vim
-    htop
-    btop
-    glances
-    fish
-    fastfetch
-    powertop
     alacritty
+    btop
+    fastfetch
+    fish
+    git
+    glances
+    htop
     onefetch
+    powertop
+    vim
 
-    # Utilities
-    rofi
-    bitwarden-desktop
-    gnome-disk-utility
-    gparted
-    kdePackages.filelight
-    unzip
-    pdftricks
-    rpi-imager
-    fwupd
-
-    # Networking
-    tor
-    traceroute
-    qbittorrent
-    wget
-    curl
-    rsync
-    macchanger
-    
-    # Dev
+    # Development
+    claude-code
+    claude-monitor
+    code
     gcc
     gnumake
-    code
     jetbrains.clion
     jetbrains.idea
     jetbrains.pycharm
     zed-editor
-    claude-code
-    claude-monitor
     #sublime-merge
     #sublime4
 
-    # Internet
+    # Networking
+    curl
+    macchanger
+    qbittorrent
+    rsync
+    tor
+    traceroute
+    wget
+
+    # Browsers & Internet
     firefox
+    librewolf
     thunderbird
     tor-browser
-    librewolf
 
-    # Multimedia
-    spotify
-    vlc
+    # Media & Graphics
     blender
     darktable
-    gimp
-    freecad
-    video-trimmer
-    prusa-slicer
     ffmpeg-full
+    freecad
+    gimp
+    prusa-slicer
+    spotify
+    video-trimmer
+    vlc
 
-    # Uncatagorized
-    obsidian
+    # Office & Productivity
     libreoffice
-    
+    obsidian
+
+    # System Utilities
+    bitwarden-desktop
+    fwupd
+    gnome-disk-utility
+    gparted
+    kdePackages.filelight
+    pdftricks
+    rofi
+    rpi-imager
+    unzip
+
     # Games
-    steam
     bastet
-    
+    steam
+
   ];
 }
