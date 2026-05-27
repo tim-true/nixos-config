@@ -21,4 +21,6 @@
     settings.user.name = "tim";
     includes = [{ path = "~/.gitconfig.local"; }];
   };
+
+  home.file.".nanorc".text = "set linenumbers\n";
 }
