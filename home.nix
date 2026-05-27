@@ -9,7 +9,7 @@
   programs.rofi = {
     enable = true;
     theme = "gruvbox-dark";
-    terminal = "${pkgs.xfce.xfce4-terminal}";
+    terminal = "${pkgs.xfce4-terminal}";
   };
 
   home.packages = with pkgs; [
@@ -18,7 +18,7 @@
 
   programs.git = {
     enable = true;
-    userName = "tim";
-    userEmail = "phantom6047@protonmail.com";
+    settings.user.name = "tim";
+    includes = [{ path = "~/.gitconfig.local"; }];
   };
 }

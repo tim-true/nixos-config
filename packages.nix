@@ -11,6 +11,7 @@
     fastfetch
     powertop
     alacritty
+    onefetch
 
     # Utilities
     rofi
