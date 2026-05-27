@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
 
   environment.systemPackages = with pkgs; [
     # CLI
@@ -25,8 +28,8 @@
     jetbrains.idea
     jetbrains.pycharm
     zed-editor
-    #sublime-merge
-    #sublime4
+    sublime-merge
+    sublime4
 
     # Networking
     curl
@@ -38,6 +41,7 @@
     wget
 
     # Browsers & Internet
+    discord
     firefox
     librewolf
     protonmail-desktop
