@@ -59,7 +59,10 @@
     isNormalUser = true;
     description = "Tim";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
 
   security.pam.services.lightdm.enableGnomeKeyring = true;
 
