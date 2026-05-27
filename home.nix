@@ -23,4 +23,6 @@
   };
 
   home.file.".nanorc".text = "set linenumbers\n";
+
+  services.ssh-agent.enable = true;
 }
