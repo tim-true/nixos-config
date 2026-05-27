@@ -40,6 +40,7 @@
     # Browsers & Internet
     firefox
     librewolf
+    protonmail-desktop
     thunderbird
     tor-browser
 
