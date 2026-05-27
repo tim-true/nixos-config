@@ -22,7 +22,16 @@
     includes = [{ path = "~/.gitconfig.local"; }];
   };
 
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings."*".AddKeysToAgent = "yes";
+  };
+
   home.file.".nanorc".text = "set linenumbers\n";
 
-  services.ssh-agent.enable = true;
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" "ssh" ];
+  };
 }

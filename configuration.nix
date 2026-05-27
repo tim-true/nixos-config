@@ -61,6 +61,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  security.pam.services.lightdm.enableGnomeKeyring = true;
+
   system.stateVersion = "25.11";
   
 }
