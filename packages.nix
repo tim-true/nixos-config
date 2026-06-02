@@ -63,7 +63,7 @@
 
     # Office & Productivity
     libreoffice
-    (obsidian.override { commandLineArgs = "--no-sandbox"; })
+    (obsidian.override { commandLineArgs = "--no-sandbox --disable-gpu"; })
 
     # System Utilities
     bitwarden-desktop
