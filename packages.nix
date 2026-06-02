@@ -3,6 +3,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
+    "electron-39.8.10"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -34,6 +35,7 @@
     # Networking
     curl
     macchanger
+    proton-vpn
     qbittorrent
     rsync
     tor
@@ -61,7 +63,7 @@
 
     # Office & Productivity
     libreoffice
-    obsidian
+    (obsidian.override { commandLineArgs = "--no-sandbox"; })
 
     # System Utilities
     bitwarden-desktop

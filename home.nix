@@ -26,8 +26,18 @@
 
   services.gnome-keyring = {
     enable = true;
-    components = [ "secrets" ];
+    components = [ "secrets" "ssh" ];
   };
 
-  programs.fish.enable = true;
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+  };
+
+  programs.fish = {
+    enable = true; 
+    shellAliases = {
+      avalon-rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#avalon";
+    };
+  };
 }
