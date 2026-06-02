@@ -38,6 +38,7 @@
     enable = true; 
     shellAliases = {
       avalon-rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#avalon";
+      flake-update = "sudo nix flake update --flake ~/nixos-config";
     };
   };
 }
