@@ -23,6 +23,7 @@
     claude-code
     claude-monitor
     code
+    docker
     gcc
     gnumake
     jetbrains.clion
@@ -35,9 +36,12 @@
     # Networking
     curl
     macchanger
+    nmap
     proton-vpn
     qbittorrent
     rsync
+    tail-tray
+    tailscale-systray
     tor
     traceroute
     wget

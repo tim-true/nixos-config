@@ -32,6 +32,11 @@
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
+    matchBlocks."github.com" = {
+      hostname = "ssh.github.com";
+      port = 443;
+      user = "git";
+    };
   };
 
   programs.fish = {

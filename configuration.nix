@@ -21,6 +21,14 @@
  
   # Enable NetworkManager
   networking.networkmanager.enable = true;
+
+  # Enable Docker
+  virtualisation.docker.enable = true;
+
+  # Enable Tailscale
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+  services.tailscale.extraUpFlags = [ "--accept-routes" ];
   
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
@@ -58,7 +66,7 @@
   users.users.tim = {
     isNormalUser = true;
     description = "Tim";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
   };
 
