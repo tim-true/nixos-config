@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.problems.handlers.sublimetext4.broken = "ignore";
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
     "electron-39.8.10"
+    "librewolf-151.0.2-1"
+    "librewolf-unwrapped-151.0.2-1"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -18,6 +21,7 @@
     onefetch
     powertop
     vim
+    nfs-utils
 
     # Development
     claude-code
@@ -58,7 +62,6 @@
     blender
     darktable
     ffmpeg-full
-    freecad
     gimp
     prusa-slicer
     spotify

@@ -12,6 +12,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "nfs" ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -21,6 +22,7 @@
  
   # Enable NetworkManager
   networking.networkmanager.enable = true;
+  #networking.networkmanager.wifi.macAddress = "random";
 
   # Enable Docker
   virtualisation.docker.enable = true;
@@ -75,5 +77,7 @@
   security.pam.services.lightdm.enableGnomeKeyring = true;
 
   system.stateVersion = "25.11";
-  
+    
+  services.rpcbind.enable = true;
+
 }
