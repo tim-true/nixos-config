@@ -70,11 +70,13 @@
 
     # Office & Productivity
     libreoffice
+    onlyoffice-desktopeditors
     (obsidian.override { commandLineArgs = "--no-sandbox --disable-gpu"; })
 
     # System Utilities
+    # NOTE: fwupd (the `fwupdmgr` CLI) is installed by `services.fwupd.enable`
+    # in configuration.nix. Do NOT add `fwupd` here.
     bitwarden-desktop
-    fwupd
     gnome-disk-utility
     gparted
     kdePackages.filelight
@@ -86,6 +88,11 @@
     # Games
     bastet
     steam
+
+    # Virtualization
+    # NOTE: VirtualBox (GUI + CLI + kernel modules + extension pack) is installed
+    # by `virtualisation.virtualbox.host.enable` in configuration.nix. Do NOT add
+    # `virtualbox` here - it would collide with the module-provided package.
 
   ];
 }

@@ -27,11 +27,21 @@
   # Enable Docker
   virtualisation.docker.enable = true;
 
+  # Enable VirtualBox (host). Installs the VirtualBox package + kernel modules.
+  virtualisation.virtualbox.host.enable = true;
+  # Extension pack: USB 2.0/3.0, RDP, disk encryption, PXE boot.
+  # NOTE: unfree and not in the binary cache, so this compiles locally.
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   # Enable Tailscale
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "client";
   services.tailscale.extraUpFlags = [ "--accept-routes" ];
   
+  # Enable fwupd firmware update daemon (provides `fwupdmgr`, LVFS metadata,
+  # D-Bus activation and udev rules). The package alone is not enough.
+  services.fwupd.enable = true;
+
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -68,7 +78,7 @@
   users.users.tim = {
     isNormalUser = true;
     description = "Tim";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers" ];
     shell = pkgs.fish;
   };
 
