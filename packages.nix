@@ -21,7 +21,6 @@
     onefetch
     powertop
     vim
-    nfs-utils
 
     # Development
     claude-code
