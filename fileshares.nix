@@ -107,11 +107,11 @@ in
   # NFS mount happens transparently on first access to /mnt/qnap/<name>, so boot
   # never waits on the NAS and a missing NAS just makes access fail (soft) rather
   # than hang. `ls /mnt/qnap/movies` is enough to trigger a mount.
-  fileSystems = lib.mapAttrs'
-    (name: export: lib.nameValuePair "/mnt/qnap/${name}" {
-      device = "${nasHost}:${export}";
-      fsType = "nfs";
-      options = nfsOptions;
-    })
-    qnapShares;
+  #fileSystems = lib.mapAttrs'
+  #  (name: export: lib.nameValuePair "/mnt/qnap/${name}" {
+  #    device = "${nasHost}:${export}";
+  #    fsType = "nfs";
+  #    options = nfsOptions;
+  #  })
+  #  qnapShares;
 }

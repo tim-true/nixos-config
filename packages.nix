@@ -32,6 +32,7 @@
     jetbrains.clion
     jetbrains.idea
     jetbrains.pycharm
+    nodejs
     zed-editor
     sublime-merge
     sublime4
