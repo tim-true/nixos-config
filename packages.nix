@@ -84,6 +84,7 @@
     rofi
     rpi-imager
     unzip
+    xarchiver
 
     # Games
     bastet
