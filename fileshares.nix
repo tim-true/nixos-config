@@ -75,30 +75,30 @@ in
   #   systemctl --user start protondrive-mount.service
   # Note: the protondrive backend uses Proton's unofficial API and can break on
   # Proton-side changes; rclone.conf holds lightly-obscured credentials (chmod 600).
-  systemd.user.services.protondrive-mount = {
-    description = "Proton Drive (rclone FUSE mount at /mnt/protondrive)";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "default.target" ];
-    # /run/wrappers/bin has the setuid fusermount3 an unprivileged user needs to
-    # mount FUSE; the default user-service PATH doesn't include it.
-    path = [ "/run/wrappers" ];
-    serviceConfig = {
-      Type = "notify";
-      # Clear a stale mount left by an unclean shutdown; ignore failure.
-      ExecStartPre = "-/run/wrappers/bin/fusermount3 -uz /mnt/protondrive";
-      ExecStart = ''
-        ${pkgs.rclone}/bin/rclone mount proton: /mnt/protondrive \
-          --vfs-cache-mode full \
-          --dir-cache-time 1h \
-          --transfers 1 --checkers 1 \
-          --umask 077
-      '';
-      ExecStop = "/run/wrappers/bin/fusermount3 -u /mnt/protondrive";
-      Restart = "on-failure";
-      RestartSec = 10;
-    };
-  };
+  #systemd.user.services.protondrive-mount = {
+  #  description = "Proton Drive (rclone FUSE mount at /mnt/protondrive)";
+  #  after = [ "network-online.target" ];
+  #  wants = [ "network-online.target" ];
+  #  wantedBy = [ "default.target" ];
+  #  # /run/wrappers/bin has the setuid fusermount3 an unprivileged user needs to
+  #  # mount FUSE; the default user-service PATH doesn't include it.
+  #  path = [ "/run/wrappers" ];
+  #  serviceConfig = {
+  #    Type = "notify";
+  #    # Clear a stale mount left by an unclean shutdown; ignore failure.
+  #    ExecStartPre = "-/run/wrappers/bin/fusermount3 -uz /mnt/protondrive";
+  #    ExecStart = ''
+  #      ${pkgs.rclone}/bin/rclone mount proton: /mnt/protondrive \
+  #        --vfs-cache-mode full \
+  #        --dir-cache-time 1h \
+  #        --transfers 1 --checkers 1 \
+  #        --umask 077
+  #    '';
+  #    ExecStop = "/run/wrappers/bin/fusermount3 -u /mnt/protondrive";
+  #    Restart = "on-failure";
+  #    RestartSec = 10;
+  #  };
+  #};
 
   ############################################################################
   # QNAP NAS  (NFS) -> /mnt/qnap/{data,backups,movies,shows}
