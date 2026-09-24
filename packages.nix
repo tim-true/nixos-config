@@ -1,7 +1,14 @@
 { pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.problems.handlers.sublimetext4.broken = "ignore";
+  # sublime4 declares two meta.problems and each needs its own handler:
+  #   broken  - plugin host needs insecure OpenSSL (only for versions < 4205)
+  #   removal - Python 3.3 plugin support dropped ahead of upstream
+  # Neither affects normal editing, so silence both.
+  nixpkgs.config.problems.handlers.sublimetext4 = {
+    broken = "ignore";
+    removal = "ignore";
+  };
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
     "electron-39.8.10"
@@ -38,6 +45,9 @@
     sublime4
 
     # Networking
+    # NOTE: tailscale (the daemon + `tailscale` CLI) is installed by
+    # `services.tailscale.enable` in configuration.nix. Do NOT add `tailscale`
+    # here - the module-provided one is what tailscaled actually runs against.
     curl
     macchanger
     nmap

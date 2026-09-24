@@ -30,6 +30,35 @@
   virtualisation.virtualbox.host.enable = true;
   # Extension pack: USB 2.0/3.0, RDP, disk encryption, PXE boot.
   # NOTE: unfree and not in the binary cache, so this compiles locally.
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  # Enable Tailscale
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
+
+  # Connect to Tailscale automatically at boot. The node is already
+  # authenticated, so this just flips it to "running" and (re)installs accepted
+  # subnet routes — which is what lets the QNAP shares mount on boot when
+  # off-LAN. `tailscale down` still works for a session; it comes back on the
+  # next boot. Remove this block to go back to connecting by hand.
+  #
+  # --accept-dns=false: the tailnet's admin console has a global nameserver
+  # override, and that resolver doesn't answer over the tailscale link, so
+  # accepting DNS replaced the system's only resolver with one that always
+  # times out. That's what looked like "the internet is broken" on boot —
+  # routing was fine, only name resolution died. Fix the tailnet DNS override
+  # in the admin console (or drop --accept-dns=false) if you actually want it.
+  systemd.services.tailscale-autoconnect = {
+    description = "Automatic connection to Tailscale";
+    after = [ "tailscaled.service" "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      TimeoutStartSec = "20s";
+    };
+    script = "${pkgs.tailscale}/bin/tailscale up --accept-routes --accept-dns=false";
+  };
 
   # Enable fwupd firmware update daemon (provides `fwupdmgr`, LVFS metadata,
   # D-Bus activation and udev rules). The package alone is not enough.

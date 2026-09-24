@@ -29,13 +29,24 @@
     components = [ "secrets" "ssh" ];
   };
 
+  # `matchBlocks` and `addKeysToAgent` are deprecated aliases; `settings` is the
+  # replacement and takes upstream OpenSSH directive names verbatim.
+  #
+  # enableDefaultConfig = false opts out of home-manager's legacy `Host *`
+  # defaults, which are on their way out. Everything it used to set (ForwardAgent
+  # no, Compression no, ControlMaster no, ...) already matches OpenSSH's own
+  # built-in defaults, so the only one worth restating is AddKeysToAgent.
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    matchBlocks."github.com" = {
-      hostname = "ssh.github.com";
-      port = 443;
-      user = "git";
+    enableDefaultConfig = false;
+    settings = {
+      # GitHub over 443 so it works from networks that block port 22.
+      "github.com" = {
+        HostName = "ssh.github.com";
+        Port = 443;
+        User = "git";
+      };
+      "*".AddKeysToAgent = "yes";
     };
   };
 
@@ -44,6 +55,7 @@
     shellAliases = {
       avalon-rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#avalon";
       flake-update = "sudo nix flake update --flake ~/nixos-config";
+      randmac = "sudo systemctl stop NetworkManager && sudo macchanger -r wlp0s20f3 && sudo systemctl start NetworkManager";
     };
   };
 }
